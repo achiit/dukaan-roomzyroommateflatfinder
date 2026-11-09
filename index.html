@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ROOMZY – Find your space. Find your people.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--bg:#f3f6fb;--card:#fff;--tx:#14213d;--mu:#5a6785;--pr:#2b2d8f;--prt:#fff;--pr2:#e6e8fb;--ac:#ffc233;--bd:#d9e0ee;--er:#c53030;--ok:#1f7a4d;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0d1224;--card:#161d38;--tx:#eaeefb;--mu:#a2add0;--pr:#9ea2ff;--prt:#0d1224;--pr2:#232b55;--bd:#2b3560;--er:#ff8a8a;--ok:#6fdca4}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0d1224;--card:#161d38;--tx:#eaeefb;--mu:#a2add0;--pr:#9ea2ff;--prt:#0d1224;--pr2:#232b55;--bd:#2b3560;--er:#ff8a8a;--ok:#6fdca4}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 15px/1.5 Inter,system-ui,sans-serif}
+h1,h2,h3,.logo{font-family:"Bricolage Grotesque",Inter,system-ui,sans-serif;margin:0}
+header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;max-width:1080px;margin:auto}
+.logo{font-weight:800;font-size:24px;letter-spacing:-.5px}.logo b{color:var(--pr)}
+button,select,input,textarea{font:inherit;color:inherit}
+.btn{background:var(--pr);color:var(--prt);border:0;border-radius:10px;padding:10px 16px;font-weight:600;cursor:pointer}
+.btn.alt{background:var(--pr2);color:var(--pr)}.btn.sm{padding:7px 12px;font-size:13px}
+.btn:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,.chip:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+main{max-width:1080px;margin:auto;padding:0 16px 40px}
+.hero{background:var(--pr);color:var(--prt);border-radius:20px;padding:26px 20px;margin-bottom:16px}
+.hero h1{font-size:clamp(28px,6vw,44px);line-height:1.08;letter-spacing:-1px}
+.hero p{margin:10px 0 0;max-width:560px;opacity:.9}
+.hero mark{background:var(--ac);color:#14213d;padding:0 6px;border-radius:6px}
+.panel{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:14px;display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin-bottom:14px}
+label{display:grid;gap:4px;font-size:13px;color:var(--mu);font-weight:500}
+select,input,textarea{background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:9px 10px;width:100%}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 10px}
+.chip{border:1px solid var(--bd);background:var(--card);border-radius:99px;padding:7px 14px;white-space:nowrap;cursor:pointer;font-weight:500}
+.chip[aria-pressed="true"]{background:var(--pr);color:var(--prt);border-color:var(--pr)}
+.safe{background:var(--pr2);border-radius:12px;padding:10px 14px;font-size:13px;margin-bottom:14px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.ph{height:120px;background:var(--pr2);display:grid;place-items:center;font-size:42px}.ph img{width:100%;height:120px;object-fit:cover}
+.cb{padding:14px;display:grid;gap:8px;flex:1}
+.top{display:flex;justify-content:space-between;gap:8px;align-items:start}
+.price{font:800 20px "Bricolage Grotesque",Inter,sans-serif;white-space:nowrap}.price small{font:500 12px Inter;color:var(--mu)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}.tag{background:var(--bg);border:1px solid var(--bd);border-radius:6px;padding:2px 8px;font-size:12px}
+.tag.k{background:var(--ac);border-color:var(--ac);color:#14213d;font-weight:600}
+.mu{color:var(--mu);font-size:13px}
+.act{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.link{background:none;border:0;color:var(--mu);text-decoration:underline;cursor:pointer;font-size:13px;padding:7px 4px}
+.empty{text-align:center;padding:40px 10px;color:var(--mu)}
+dialog{border:0;border-radius:18px;padding:0;width:min(560px,94vw);background:var(--card);color:var(--tx);max-height:92vh}
+dialog::backdrop{background:#0008}
+form{padding:18px;display:grid;gap:11px;grid-template-columns:1fr 1fr}.full{grid-column:1/-1}
+.err{color:var(--er);font-size:12px;min-height:0}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:14px;z-index:9}
+footer{text-align:center;color:var(--mu);font-size:12px;padding:10px 16px 30px}
+@media(max-width:480px){form{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><div class="logo">ROOM<b>ZY</b></div><button class="btn" id="open">+ Post a listing</button></header>
+<main>
+<section class="hero"><h1>Find your space. <mark>Find your people.</mark></h1>
+<p>Need a roommate, have a room to share, or looking for a flat or PG? Browse local listings and contact people directly.</p></section>
+
+<section class="panel" aria-label="Search filters">
+<label>City<select id="fCity"></select></label>
+<label>Min budget (₹/month)<input id="fMin" type="number" min="0" step="500" placeholder="0"></label>
+<label>Max budget (₹/month)<input id="fMax" type="number" min="0" step="500" placeholder="Any"></label>
+<label>Room type<select id="fType"></select></label>
+<label>Gender preference<select id="fGen"></select></label>
+<label>Occupation<select id="fOcc"></select></label>
+</section>
+
+<div class="chips" id="chips" role="group" aria-label="Listing category"></div>
+<div class="safe"><strong>Stay safe:</strong> meet in a public place, visit the room before paying, verify the owner or tenant, and never pay a deposit before checking the property and agreement.</div>
+<div class="grid" id="list" aria-live="polite"></div>
+<div class="empty" id="empty" hidden><h3>No listings match these filters</h3><p>Try a different city or a wider budget, or post your own listing.</p></div>
+</main>
+<footer>ROOMZY demo. Sample listings only; no real users, logins or bookings yet. Listings expire after 30 days.</footer>
+
+<dialog id="dlg">
+<form id="frm" novalidate>
+<h2 class="full">Post a listing</h2>
+<label class="full">Your name<input name="name" required maxlength="40"></label>
+<label>Listing category<select name="cat"></select></label>
+<label>City<select name="city"></select></label>
+<label class="full">Area / locality<input name="area" maxlength="50" placeholder="e.g. Ainthapali"></label>
+<label>Monthly budget / rent (₹)<input name="rent" type="number" min="500" step="100" required></label>
+<label>Room type<select name="type"></select></label>
+<label>Gender preference<select name="gender"></select></label>
+<label>Occupation<select name="occ"></select></label>
+<label>Age<input name="age" type="number" min="18" max="70"></label>
+<label>Food preference<select name="food"></select></label>
+<label>Deposit (₹)<input name="dep" type="number" min="0" step="500" placeholder="0"></label>
+<label>Furnishing<select name="fur"></select></label>
+<label>Move-in date<input name="move" type="date"></label>
+<label>WhatsApp number<input name="phone" inputmode="numeric" maxlength="10" placeholder="10-digit mobile" required></label>
+<label>Photo (optional)<input name="photo" type="file" accept="image/*"></label>
+<label class="full">Short details<textarea name="details" rows="2" maxlength="200"></textarea></label>
+<label class="full" style="display:flex;gap:8px;align-items:center;color:var(--tx)"><input type="checkbox" name="ok" style="width:auto"> I confirm this listing is genuine and I accept the terms.</label>
+<div class="err full" id="err" role="alert"></div>
+<div class="full" style="display:flex;gap:8px;justify-content:flex-end"><button type="button" class="btn alt" id="cancel">Cancel</button><button class="btn">Publish listing</button></div>
+</form></dialog>
+
+<script>
+const CITIES=["Sambalpur","Bhubaneswar","Cuttack","Rourkela","Puri","Berhampur","Balasore","Jharsuguda","Other city"];
+const CATS=[["all","All"],["roommate","Need roommate"],["room","Room available"],["flat","Flat / PG available"]];
+const TYPES=["Shared room","Private room","Flat/Apartment","PG"],GEN=["Any","Boys","Girls"],OCC=["Any","Student","Working"],FOOD=["Any","Veg","Non-veg"],FUR=["Unfurnished","Semi-furnished","Furnished"];
+const EM={roommate:"🙋",room:"🛏️",flat:"🏢"};
+let L=[
+{id:1,cat:"roommate",name:"Ankit",city:"Sambalpur",area:"Burla",rent:3500,type:"Shared room",gender:"Boys",occ:"Student",age:21,food:"Any",dep:0,fur:"Furnished",move:"2026-12-01",phone:"9000000001",details:"Engineering student looking for a roommate near VSSUT.",d:3},
+{id:2,cat:"room",name:"Sunita (owner)",city:"Bhubaneswar",area:"Patia",rent:6500,type:"Private room",gender:"Girls",occ:"Working",age:0,food:"Veg",dep:13000,fur:"Semi-furnished",move:"2026-11-20",phone:"9000000002",details:"Room in a 2BHK, attached bathroom, near bus stop.",d:6},
+{id:3,cat:"flat",name:"Mohanty Realty",city:"Cuttack",area:"Badambadi",rent:9000,type:"Flat/Apartment",gender:"Any",occ:"Any",age:0,food:"Any",dep:18000,fur:"Semi-furnished",move:"2026-12-05",phone:"9000000003",details:"2BHK flat, 2nd floor, family or sharing friendly.",d:10},
+{id:4,cat:"flat",name:"Green PG",city:"Rourkela",area:"Sector 2",rent:4200,type:"PG",gender:"Boys",occ:"Working",age:0,food:"Any",dep:4200,fur:"Furnished",move:"2026-11-15",phone:"9000000004",details:"Meals included, Wi-Fi, laundry. Visit before booking.",d:2},
+{id:5,cat:"roommate",name:"Priya",city:"Bhubaneswar",area:"Jaydev Vihar",rent:5000,type:"Shared room",gender:"Girls",occ:"Working",age:25,food:"Veg",dep:0,fur:"Furnished",move:"2026-12-10",phone:"9000000005",details:"IT professional, need a female roommate to share a flat.",d:5},
+{id:6,cat:"room",name:"R. Sahu (owner)",city:"Jharsuguda",area:"Brajrajnagar road",rent:2800,type:"Shared room",gender:"Boys",occ:"Any",age:0,food:"Any",dep:2800,fur:"Unfurnished",move:"2026-11-12",phone:"9000000006",details:"One bed free in a 3-bed room. Water and power included.",d:12},
+{id:7,cat:"roommate",name:"Debasis",city:"Puri",area:"Gundicha Marg",rent:3000,type:"Private room",gender:"Any",occ:"Working",age:28,food:"Non-veg",dep:3000,fur:"Semi-furnished",move:"2026-12-01",phone:"9000000007",details:"Work in a hotel. Looking to split a 2-room flat.",d:8},
+{id:8,cat:"flat",name:"Lakshmi Homes",city:"Berhampur",area:"Gate Bazaar",rent:7500,type:"Flat/Apartment",gender:"Any",occ:"Any",age:0,food:"Any",dep:15000,fur:"Furnished",move:"2026-11-25",phone:"9000000008",details:"Fully furnished 1BHK near the market.",d:15}];
+const $=s=>document.querySelector(s);
+const opts=(a,first)=>(first?`<option value="">${first}</option>`:"")+a.map(x=>`<option>${x}</option>`).join("");
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const inr=n=>"₹"+Number(n).toLocaleString("en-IN");
+let cat="all",reported=new Set(),revealed=new Set();
+try{const s=JSON.parse(localStorage.getItem("roomzy_own")||"[]");L=s.concat(L)}catch(e){}
+function save(){try{localStorage.setItem("roomzy_own",JSON.stringify(L.filter(x=>x.own).map(x=>({...x,photo:x.photo&&x.photo.length<150000?x.photo:""}))))}catch(e){}}
+$("#fCity").innerHTML=opts(CITIES,"All cities");$("#fType").innerHTML=opts(TYPES,"Any type");
+$("#fGen").innerHTML=opts(GEN.slice(1),"Any gender");$("#fOcc").innerHTML=opts(OCC.slice(1),"Any occupation");
+document.querySelector("[name=cat]").innerHTML=CATS.slice(1).map(c=>`<option value="${c[0]}">${c[1]}</option>`).join("");
+$("[name=city]").innerHTML=opts(CITIES);$("[name=type]").innerHTML=opts(TYPES);$("[name=gender]").innerHTML=opts(GEN);
+$("[name=occ]").innerHTML=opts(OCC);$("[name=food]").innerHTML=opts(FOOD);$("[name=fur]").innerHTML=opts(FUR);
+$("#chips").innerHTML=CATS.map(c=>`<button class="chip" data-c="${c[0]}" aria-pressed="${c[0]=="all"}">${c[1]}</button>`).join("");
+$("#chips").onclick=e=>{const b=e.target.closest(".chip");if(!b)return;cat=b.dataset.c;document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b));render()};
+["fCity","fMin","fMax","fType","fGen","fOcc"].forEach(i=>$("#"+i).addEventListener("input",render));
+function render(){
+ const c=$("#fCity").value,mn=+$("#fMin").value||0,mx=+$("#fMax").value||1e9,t=$("#fType").value,g=$("#fGen").value,o=$("#fOcc").value;
+ const r=L.filter(x=>!x.filled&&!reported.has(x.id)&&x.d<30&&(cat=="all"||x.cat==cat)&&(!c||x.city==c)&&x.rent>=mn&&x.rent<=mx&&(!t||x.type==t)&&(!g||x.gender==g||x.gender=="Any")&&(!o||x.occ==o||x.occ=="Any"));
+ $("#empty").hidden=r.length>0;
+ $("#list").innerHTML=r.map(x=>{const lab=CATS.find(k=>k[0]==x.cat)[1],left=30-x.d,show=revealed.has(x.id);
+ return `<article class="card"><div class="ph">${x.photo?`<img src="${x.photo}" alt="Photo of listing">`:EM[x.cat]}</div><div class="cb">
+ <div class="top"><div><h3>${esc(x.type)} in ${esc(x.area||x.city)}</h3><div class="mu">${esc(x.city)} · ${esc(x.name)}</div></div><div class="price">${inr(x.rent)}<small>/mo</small></div></div>
+ <div class="tags"><span class="tag k">${lab}</span><span class="tag">${esc(x.gender)}</span><span class="tag">${esc(x.occ)}</span><span class="tag">${esc(x.food)} food</span><span class="tag">${esc(x.fur)}</span>${x.dep?`<span class="tag">Deposit ${inr(x.dep)}</span>`:""}${x.age?`<span class="tag">Age ${x.age}</span>`:""}</div>
+ <p style="margin:0">${esc(x.details)}</p>
+ <div class="mu">Move-in: ${x.move?new Date(x.move).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}):"Flexible"} · Expires in ${left} days</div>
+ <div class="act">${show?`<a class="btn sm" href="https://wa.me/91${x.phone}" target="_blank" rel="noopener">WhatsApp +91 ${x.phone}</a>`:`<button class="btn sm" data-a="show" data-id="${x.id}">Show contact</button>`}
+ ${x.own?`<button class="btn alt sm" data-a="fill&quot; data-id="${x.id}">Mark as filled</button>`:""}<button class="link" data-a="rep" data-id="${x.id}">Report</button></div></div></article>`}).join("");
+}
+$("#list").onclick=e=>{const b=e.target.closest("[data-a]");if(!b)return;const id=+b.dataset.id,a=b.dataset.a;
+ if(a=="show")revealed.add(id);
+ if(a=="rep"){reported.add(id);toast("Reported. We will review this listing.")}
+ if(a=="fill"){const x=L.find(y=>y.id==id);x.filled=true;save();toast("Marked as filled and removed.")}
+ render()};
+function toast(m){const t=document.createElement("div");t.className="toast";t.textContent=m;document.body.append(t);setTimeout(()=>t.remove(),2600)}
+const dlg=$("#dlg");$("#open").onclick=()=>dlg.showModal();$("#cancel").onclick=()=>dlg.close();
+function shrink(f){return new Promise(res=>{if(!f)return res("");const r=new FileReader();r.onload=()=>{const i=new Image();i.onload=()=>{const k=Math.min(1,500/i.width),c=document.createElement("canvas");c.width=i.width*k;c.height=i.height*k;c.getContext("2d").drawImage(i,0,0,c.width,c.height);res(c.toDataURL("image/jpeg",.7))};i.onerror=()=>res("");i.src=r.result};r.onerror=()=>res("");r.readAsDataURL(f)})}
+$("#frm").onsubmit=async e=>{e.preventDefault();const f=e.target,v=n=>f.elements[n].value.trim(),er=m=>{$("#err").textContent=m};
+ if(!v("name"))return er("Enter your name.");
+ if(!(+v("rent")>=500))return er("Enter a monthly budget of at least ₹500.");
+ if(!/^[6-9]\d{9}$/.test(v("phone")))return er("Enter a valid 10-digit Indian mobile number starting with 6, 7, 8 or 9.");
+ if(v("age")&&(+v("age")<18))return er("Age must be 18 or above.");
+ if(!f.elements.ok.checked)return er("Please confirm the listing is genuine.");
+ er("");const photo=await shrink(f.elements.photo.files[0]);
+ L.unshift({id:Date.now(),own:true,d:0,cat:v("cat"),name:v("name"),city:v("city"),area:v("area"),rent:+v("rent"),type:v("type"),gender:v("gender"),occ:v("occ"),age:+v("age")||0,food:v("food"),dep:+v("dep")||0,fur:v("fur"),move:v("move"),phone:v("phone"),details:v("details")||"No extra details.",photo});
+ save();f.reset();dlg.close();render();toast("Published. Your listing is live for 30 days.")};
+render();
+</script>
+</body>
+</html>
